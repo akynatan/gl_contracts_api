@@ -1,5 +1,5 @@
 # Multi-stage build para produção
-FROM node:20 AS builder
+FROM node:24-alpine AS builder
 
 # Instalar dependências de build
 RUN apk add --no-cache python3 make g++
@@ -20,7 +20,7 @@ COPY . .
 RUN npm run build
 
 # Stage de produção
-FROM node:20 AS production
+FROM node:24-alpine AS production
 
 # Instalar dumb-init para gerenciar processos
 RUN apk add --no-cache dumb-init
@@ -49,9 +49,6 @@ EXPOSE 9999
 # Health check
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
   CMD node -e "require('http').get('http://localhost:9999/health', (res) => { process.exit(res.statusCode === 200 ? 0 : 1) })" || exit 1
-
-# executar npm install
-RUN npm install
 
 # Comando de inicialização
 ENTRYPOINT ["dumb-init", "--"]

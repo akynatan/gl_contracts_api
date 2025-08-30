@@ -187,7 +187,7 @@ fi
 # docker compose down 2>/dev/null || true
 
 # Construir e iniciar
-docker compose up -d --build
+docker compose up  docker-compose.prod.yml -d --build
 
 # 9. AGUARDAR BANCO ESTAR PRONTO
 log "Aguardando banco de dados estar pronto..."
