@@ -59,9 +59,9 @@ if (!AppDataSource.isInitialized) {
   });
 }
 
-// cron.schedule('*/30 * * * *', () => {
-//   new ContractSignatureChecker().execute();
-// });
+cron.schedule('*/5 * * * *', () => {
+  new ContractSignatureChecker().execute();
+});
 
 fastify.register(routes);
 
