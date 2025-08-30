@@ -1,5 +1,5 @@
 
-FROM node:24
+FROM node:20
 
 RUN apt-get update && apt-get install -y iputils-ping nano net-tools && apt-get clean
 
