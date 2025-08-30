@@ -1,5 +1,3 @@
-version: '3.6'
-
 x-default: &default
   stdin_open: true
   tty: true
