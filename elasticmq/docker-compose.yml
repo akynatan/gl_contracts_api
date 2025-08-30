@@ -1,0 +1,24 @@
+version: "3"
+services:
+  sqs:
+    image: softwaremill/elasticmq:latest
+    ports:
+      - "9324:9324"
+  sqs-create:
+    image: infrastructureascode/aws-cli:latest
+    links:
+      - sqs
+    entrypoint: sh
+    volumes:
+      - ./:/project
+    environment:
+      - AWS_ACCESS_KEY_ID=local
+      - AWS_SECRET_ACCESS_KEY=local
+      - AWS_DEFAULT_REGION=us-east-1
+      - AWS_ENDPOINT_URL=http://sqs:9324
+networks:
+  default:
+    external:
+      name: full_shared
+  full_shared:
+    name: full_shared

@@ -1,0 +1,11 @@
+node_modules
+.build
+.nvmrc
+build
+.DS_Store
+.idea/
+.vscode/
+tmp/
+temp/
+.env
+ormconfig.json

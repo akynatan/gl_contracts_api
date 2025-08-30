@@ -1,0 +1,32 @@
+Olá, 
+URL: https://www.playhub.com.br/sandbox/APP
+Login/Senha: desenv.bizz - 61cMIonI
+https://www.playhub.com.br/sandbox/api/PlayhubApi/api/v3
+ 
+Por exemplo para acessar a funcionalidade de token a URL será:
+https://www.playhub.com.br/sandbox/api/PlayhubApi/api/v3/authentication/tokens
+  
+Só a versão v3 permite o cadastro de telefones celulares, que são requisitos obrigatórios para os clientes que querem usar o produto Deezer.
+As alterações são pequenas para migrar da v1 para a v3, caso vocês tenham desenvolvido com a v1 recomendamos atualizar para a versão v3.
+ 
+As credenciais de acesso são:
+ 
+As credenciais de produção podem ser maiores, com até 256 caracteres.
+IMPORTANTE: Cada ISP que tiver um contrato com a Playhub terá suas próprias credenciais ApiKey/ApiSecret para identificação e autorização.
+ 
+Os produtos que estão autorizados para a BIZZ nessa área de teste são:
+Estádio TNT Sports: EIT
+Hube: HUB
+Fluid: FLD
+Deezer: DZ1
+ 
+Em produção podem haver outros produtos. Produtos também poderão ser adicionados e retirados do lineup no futuro
+ 
+Os códigos de 3 letras após o nome do produto devem ser utilizados como ProductId
+Lembrando que a sandbox é uma área que não dá acesso aos produtos nos sites dos fornecedores de conteúdo. A Sandbox serve exclusivamente para teste de interface da API Playhub.
+ 
+A documentação da API v3 está em https://www.playhub.com.br/sandbox/api/docs/v3.0/.  Estamos anexado a este e-mail o documento PlayhubAPI_DocumentaçãoV3.02.pdf, que contém informações adicionais sobre objetos, restrições, processo de homologação, suporte, validade de token etc.
+ 
+Quando o desenvolvimento estiver concluído, gostaríamos de agendar uma sessão de homologação entre BIZZ e Playhub, antes da entrada definitiva em produção.
+ 
+Estamos à disposição para dúvidas que surgirem.

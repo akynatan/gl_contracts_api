@@ -1,0 +1,55 @@
+version: '3.6'
+
+x-default: &default
+  stdin_open: true
+  tty: true
+  links:
+    - db
+
+services:
+  web:
+    <<: *default
+    working_dir: /code
+    volumes:
+      - .:/code
+    environment:
+      CORS_MAX_AGE: 1
+      NODE_NO_WARNINGS: 1
+      NODE_ENV: local
+    build:
+      dockerfile: Dockerfile.dev
+      context: .
+      args:
+        - USER
+        - UID
+    ports:
+      - '9999:9999'
+    networks:
+      shared:
+        aliases:
+          - clicksign_hubsoft
+
+  db:
+    image: postgres:11.16
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    volumes:
+      - clicksign_hubsoft_pgdata:/var/lib/postgresql/data
+    ports:
+      - '22432:5432'
+    networks:
+      - shared
+
+volumes:
+  node_modules:
+  clicksign_hubsoft_pgdata:
+
+networks:
+  shared:
+    name: clicksign_hubsoft_shared
+    attachable: true
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.10.90.0/24

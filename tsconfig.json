@@ -1,0 +1,38 @@
+{
+  "ts-node": {
+    "files": true
+  },
+  "files": ["src/server.ts"],
+  "include": ["src/**/*"],
+  "compilerOptions": {
+    "lib": ["es5", "es6"],
+    "target": "es2017",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noEmitOnError": true,
+    "outDir": "./build",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
+    "sourceMap": true,
+    "allowJs": true,
+    "esModuleInterop": true,
+    "baseUrl": "./",
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "paths": {
+      "@repositories/*": ["./src/repositories/*"],
+      "@dtos/*": ["./src/dtos/*"],
+      "@entities/*": ["./src/entities/*"],
+      "@enum/*": ["./src/enum/*"],
+      "@services/*": ["./src/services/*"],
+      "@/*": ["./src/*"],
+      "@controllers/*": ["./src/controllers/*"],
+      "@errors/*": ["src/errors/*"],
+      "@helpers/*": ["src/helpers/*"],
+      "@providers/*": ["src/providers/*"],
+      "@config/*": ["src/config/*"],
+      "@apis/*": ["src/apis/*"]
+    }
+  }
+}

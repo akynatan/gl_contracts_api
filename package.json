@@ -1,0 +1,67 @@
+{
+  "name": "clicksign-hubsoft",
+  "version": "1.0.0",
+  "description": "Serviço para gerenciar os dados de pagamento",
+  "engines": {
+    "node": ">=16.0"
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "@fastify/cors": "^9.0.1",
+    "@fastify/formbody": "^7.4.0",
+    "@fastify/multipart": "^8.2.0",
+    "async-mutex": "^0.4.0",
+    "axios": "^1.5.1",
+    "bcryptjs": "^2.4.3",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.0",
+    "date-fns": "^3.6.0",
+    "dotenv": "^16.4.5",
+    "fastify": "^4.27.0",
+    "handlebars": "^4.7.7",
+    "inflection": "^2.0.1",
+    "jsonwebtoken": "^9.0.0",
+    "jwk-to-pem": "^2.0.5",
+    "lodash": "^4.17.21",
+    "node-cron": "^3.0.3",
+    "nodemailer": "^6.9.2",
+    "pg": "^8.4.0",
+    "reflect-metadata": "^0.2.2",
+    "semver": "^7.5.2",
+    "typeorm": "^0.3.15",
+    "uuid": "^10.0.0",
+    "validator": "^13.9.0"
+  },
+  "scripts": {
+    "build": "tsc && tsc-alias",
+    "typeorm": "npx ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
+    "seeds:create": "npx ts-node -r tsconfig-paths/register src/seedsCreate.ts",
+    "seeds:up": "npx ts-node -r tsconfig-paths/register src/seedsRun.ts",
+    "seeds:down": "npx ts-node  -r tsconfig-paths/register src/seedsRun.ts down",
+    "migration:create": "npx ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:generate -d src/data-source.ts",
+    "migration:run": "npx ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:run -d src/data-source.ts",
+    "migration:revert": "npx ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:revert -d src/data-source.ts",
+    "lint": "eslint . --ext .ts",
+    "lint-fix": "eslint . --ext .ts --fix",
+    "dev:server": "npx ts-node-dev  --respawn -r tsconfig-paths/register --inspect --ignore-watch node_modules src/server.ts",
+    "migration:prod:run": "npx typeorm-ts-node-commonjs migration:run -d build/data-source.js"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.2",
+    "@types/validator": "^13.7.14",
+    "@typescript-eslint/eslint-plugin": "^5.57.1",
+    "@typescript-eslint/parser": "^5.57.1",
+    "aws-sdk": "^2.1328.0",
+    "eslint": "^8.37.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "ts-node-dev": "^2.0.0",
+    "tsc-alias": "^1.8.10",
+    "tsconfig-paths": "^4.2.0",
+    "tsx": "^4.11.2",
+    "typeorm-extension": "^2.5.2",
+    "typescript": "^5.4.5"
+  }
+}
