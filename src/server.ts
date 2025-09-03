@@ -11,7 +11,7 @@ import { DefaultError } from '@errors/defaultError';
 import AppError from './errors/AppError';
 import './apis/hubsoft';
 import ContractSignatureChecker from '@services/crons/ContractSignatureChecker';
-// import { updateTokens } from '@services/crons/updateTokens';
+import { updateTokens } from '@services/crons/updateTokens';
 
 const fastify = Fastify({
   logger: true,
@@ -54,13 +54,12 @@ fastify.setErrorHandler((error, _, response) => {
 });
 
 if (!AppDataSource.isInitialized) {
-  AppDataSource.initialize().then(() => {
-    new ContractSignatureChecker().execute();
-  });
+  AppDataSource.initialize();
 }
 
 cron.schedule('*/5 * * * *', () => {
   new ContractSignatureChecker().execute();
+  updateTokens();
 });
 
 fastify.register(routes);
