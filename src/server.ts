@@ -21,18 +21,7 @@ fastify.register(require('@fastify/formbody'));
 fastify.register(require('@fastify/multipart'));
 
 fastify.register(cors, {
-  origin: process.env.ALLOW_API_ORIGIN || '*',
-  allowedHeaders: [
-    'Content-Type',
-    'X-Amz-Date',
-    'Authorization',
-    'X-Api-Key',
-    'X-Amz-Security-Token',
-    'X-Amz-User-Agent',
-    'X-Amzn-Trace-Id',
-    'accept-version',
-    'time-zone',
-  ],
+  origin: true,
 });
 
 fastify.setErrorHandler((error, _, response) => {
