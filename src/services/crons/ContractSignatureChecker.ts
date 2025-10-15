@@ -5,11 +5,32 @@ import { apiHubsoft } from '@/apis/hubsoft';
 
 export default class ContractSignatureChecker {
   public async execute() {
+    console.log('--------------------------------');
+    console.log('--------------------------------');
+    console.log('--------------------------------');
+    console.log('--------------------------------');
+    console.log('--------------------------------');
+    console.log('Starting contract signature checker');
+
     const contracts = await ContractRepository.findContractsWithoutSignature();
 
     for (const contract of contracts) {
-      await this.process(contract);
+      console.log(`Processing contract ${contract.id}`);
+      try {
+        await this.process(contract);
+      } catch (error) {
+        console.log(error);
+        console.error(`Error processing contract ${contract.id}`);
+      }
     }
+
+    console.log('--------------------------------');
+    console.log('Finalizing contract signature checker');
+    console.log('--------------------------------');
+    console.log('--------------------------------');
+    console.log('--------------------------------');
+    console.log('--------------------------------');
+    console.log('--------------------------------');
   }
 
   public async process(contract: Contract) {
