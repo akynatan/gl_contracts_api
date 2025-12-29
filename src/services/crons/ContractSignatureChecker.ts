@@ -3,6 +3,10 @@ import { apiClick } from '@/apis/apiClick';
 import Contract from '@entities/Contract';
 import { apiHubsoft } from '@/apis/hubsoft';
 
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 export default class ContractSignatureChecker {
   public async execute() {
     console.log('--------------------------------');
@@ -18,6 +22,7 @@ export default class ContractSignatureChecker {
       console.log(`Processing contract ${contract.id}`);
       try {
         await this.process(contract);
+        await sleep(5000);
       } catch (error) {
         console.log(error);
         console.error(`Error2 processing contract ${contract.id}`);

@@ -269,6 +269,8 @@ class ClickApi {
   }
 
   public async getDocument(envelopeId: string, documentId: string) {
+    const url = `envelopes/${envelopeId}/documents/${documentId}`;
+    console.log('url', url);
     const response = await this.instanceAxios.get(
       `envelopes/${envelopeId}/documents/${documentId}`,
     );
