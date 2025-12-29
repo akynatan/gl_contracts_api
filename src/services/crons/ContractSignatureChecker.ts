@@ -19,7 +19,7 @@ export default class ContractSignatureChecker {
       try {
         await this.process(contract);
       } catch (error) {
-        console.log(error);
+        console.error(error);
         console.error(`Error processing contract ${contract.id}`);
       }
     }
