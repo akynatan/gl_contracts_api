@@ -19,8 +19,8 @@ export default class ContractSignatureChecker {
       try {
         await this.process(contract);
       } catch (error) {
-        console.error(error);
-        console.error(`Error processing contract ${contract.id}`);
+        console.log(error);
+        console.error(`Error2 processing contract ${contract.id}`);
       }
     }
 
@@ -34,33 +34,38 @@ export default class ContractSignatureChecker {
   }
 
   public async process(contract: Contract) {
-    const envelopeId = contract.envelopeId;
-    const documentId = contract.documentId;
+    try {
+      const envelopeId = contract.envelopeId;
+      const documentId = contract.documentId;
 
-    const envelope = await apiClick.getDocument(envelopeId, documentId);
+      const envelope = await apiClick.getDocument(envelopeId, documentId);
 
-    const fileSignedUrl = envelope.data.links.files.signed;
+      const fileSignedUrl = envelope.data.links.files.signed;
 
-    if (fileSignedUrl) {
-      const signedAt = new Date();
+      if (fileSignedUrl) {
+        const signedAt = new Date();
 
-      contract.status = 'signed';
-      contract.documentUrlSigned = fileSignedUrl;
-      contract.documentSignedAt = signedAt;
-      await ContractRepository.save(contract);
+        contract.status = 'signed';
+        contract.documentUrlSigned = fileSignedUrl;
+        contract.documentSignedAt = signedAt;
+        await ContractRepository.save(contract);
 
-      await apiHubsoft.markContractAsSigned(
-        contract.idClientServiceContract,
-        signedAt,
-      );
+        await apiHubsoft.markContractAsSigned(
+          contract.idClientServiceContract,
+          signedAt,
+        );
 
-      const fileToAdd = await fetch(fileSignedUrl);
-      const fileBuffer = await fileToAdd.blob();
+        const fileToAdd = await fetch(fileSignedUrl);
+        const fileBuffer = await fileToAdd.blob();
 
-      await apiHubsoft.addContractAttachment(
-        contract.idClientServiceContract,
-        fileBuffer,
-      );
+        await apiHubsoft.addContractAttachment(
+          contract.idClientServiceContract,
+          fileBuffer,
+        );
+      }
+    } catch (error) {
+      console.error(`Error processing contract ${contract.id}`);
+      console.log(error);
     }
   }
 }
